@@ -41,7 +41,7 @@ calcula_area_debug coeficientes exponentes s l r = area_debug p s l r
 
   -- This function should return a list [area, volume].
 solve :: Int -> Int -> [Int] -> [Int] -> [Double]
-solve l r a b = [calcula_area a b 0.001 l r, 0.0]
+solve l r a b = [calcula_area a b 0.001 l r, calcula_volumen a b 0.001 l r]
 
 show2Decimals :: Double -> String
 show2Decimals x = printf "%+.2f" x
@@ -52,7 +52,7 @@ showDoubleList xs = unlines (map show2Decimals xs)
 
   --Input/Output.
 main :: IO ()
---main = getContents >>= mapM_ (printf "%.1f\n"). (\[a, b, [l, r]] -> solve l r a b). map (map read. words). lines
+main = getContents >>= mapM_ (printf "%.1f\n"). (\[a, b, [l, r]] -> solve l r a b). map (map read. words). lines
 --main = printf "%f\n" ( calcula_area [1,2,3,4,5] [6,7,8,9,10] 0.001 1 4 )
-main = printf "%f\n" ( calcula_volumen [1,2,3,4,5] [6,7,8,9,10] 0.001 1 4 )
+--main = printf "%f\n" ( calcula_volumen [1,2,3,4,5] [6,7,8,9,10] 0.001 1 4 )
 --main = printf "%s\n" ( showDoubleList $ calcula_area_debug [1,2,3,4,5] [6,7,8,9,10] 0.1 1 2 )
