@@ -28,6 +28,13 @@ calcula_area::[Int]->[Int]->Double->Int->Int->Double
 calcula_area coeficientes exponentes s l r = area p s l r
   where p = crea_polinomio coeficientes exponentes
 
+volumen::[(Double->Double)]->Double->Int->Int->Double
+volumen p s l r = sum $ map (\x->pi*x*x*s) $ map (evalua_polimonio p) $ takeWhile (<(fromIntegral r+hs)) [(fromIntegral l),(fromIntegral l)+s..]
+  where hs=s/2
+
+calcula_volumen::[Int]->[Int]->Double->Int->Int->Double
+calcula_volumen coeficientes exponentes s l r = volumen p s l r
+  where p = crea_polinomio coeficientes exponentes
 calcula_area_debug::[Int]->[Int]->Double->Int->Int->[Double]
 calcula_area_debug coeficientes exponentes s l r = area_debug p s l r
   where p = crea_polinomio coeficientes exponentes
@@ -46,5 +53,6 @@ showDoubleList xs = unlines (map show2Decimals xs)
   --Input/Output.
 main :: IO ()
 --main = getContents >>= mapM_ (printf "%.1f\n"). (\[a, b, [l, r]] -> solve l r a b). map (map read. words). lines
-main = printf "%f\n" ( calcula_area [1,2,3,4,5] [6,7,8,9,10] 0.001 1 4 )
+--main = printf "%f\n" ( calcula_area [1,2,3,4,5] [6,7,8,9,10] 0.001 1 4 )
+main = printf "%f\n" ( calcula_volumen [1,2,3,4,5] [6,7,8,9,10] 0.001 1 4 )
 --main = printf "%s\n" ( showDoubleList $ calcula_area_debug [1,2,3,4,5] [6,7,8,9,10] 0.1 1 2 )

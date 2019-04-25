@@ -1,5 +1,6 @@
 from functools import reduce
 from numpy import arange
+from math import pi
 
 # XXX: https://mathieularose.com/function-composition-in-python/
 def compose(*functions):
@@ -15,5 +16,6 @@ A=list(arange(l, r+s/2,s ))
 #print("Array {}".format(A))
 p=lambda x: 1*x**6+2*x**7+3*x**8+4*x**9+5*x**10
 e=list(map(compose(lambda x:x*s,p),A))
+#e=list(map(compose(lambda x:pi*x**2*s,p),A))
 #print(e)
 print(sum(e))
